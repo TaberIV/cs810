@@ -1,0 +1,72 @@
+package "_caml" (
+  directory = "_caml"
+  description = "[Internal] Wrapped version of the OCaml stdlib"
+  requires = ""
+  archive(byte) = "dune_caml.cma"
+  archive(native) = "dune_caml.cmxa"
+  plugin(byte) = "dune_caml.cma"
+  plugin(native) = "dune_caml.cmxs"
+)
+package "_dune_lang" (
+  directory = "_dune_lang"
+  description = "[Internal] S-expression library"
+  requires = "dune._stdune"
+  archive(byte) = "dune_lang.cma"
+  archive(native) = "dune_lang.cmxa"
+  plugin(byte) = "dune_lang.cma"
+  plugin(native) = "dune_lang.cmxs"
+)
+package "_ocaml_config" (
+  directory = "_ocaml_config"
+  description = "[Internal] Interpret the output of 'ocamlc -config'"
+  requires = "dune._stdune"
+  archive(byte) = "ocaml_config.cma"
+  archive(native) = "ocaml_config.cmxa"
+  plugin(byte) = "ocaml_config.cma"
+  plugin(native) = "ocaml_config.cmxs"
+)
+package "_stdune" (
+  directory = "_stdune"
+  description = "[Internal] Standard library of Dune"
+  requires = "dune._caml unix"
+  archive(byte) = "stdune.cma"
+  archive(native) = "stdune.cmxa"
+  plugin(byte) = "stdune.cma"
+  plugin(native) = "stdune.cmxs"
+)
+package "_which-program" (
+  directory = "_which-program"
+  description = "[Internal] Standard library of Dune"
+  requires = ""
+  archive(byte) = ""
+  archive(native) = ""
+  plugin(byte) = ""
+  plugin(native) = ""
+  package "dune" (
+    directory = "dune"
+    description = ""
+    requires = "dune._which-program"
+    archive(byte) = "which_program_dune.cma"
+    archive(native) = "which_program_dune.cmxa"
+    plugin(byte) = "which_program_dune.cma"
+    plugin(native) = "which_program_dune.cmxs"
+  )
+  package "jbuilder" (
+    directory = "jbuilder"
+    description = ""
+    requires = "dune._which-program"
+    archive(byte) = "which_program_jbuilder.cma"
+    archive(native) = "which_program_jbuilder.cmxa"
+    plugin(byte) = "which_program_jbuilder.cma"
+    plugin(native) = "which_program_jbuilder.cmxs"
+  )
+)
+package "configurator" (
+  directory = "configurator"
+  description = ""
+  requires = "dune._dune_lang dune._ocaml_config dune._stdune"
+  archive(byte) = "configurator.cma"
+  archive(native) = "configurator.cmxa"
+  plugin(byte) = "configurator.cma"
+  plugin(native) = "configurator.cmxs"
+)
