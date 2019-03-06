@@ -1,0 +1,7 @@
+*.cmo
+*.cmi
+*.cmt
+*.cmti
+*.depends
+
+**/_build
